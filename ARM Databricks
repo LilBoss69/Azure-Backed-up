@@ -1,0 +1,62 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workspaces_adb_nh_project_name": {
+            "defaultValue": "adb-nh-project",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Databricks/workspaces",
+            "apiVersion": "2024-09-01-preview",
+            "name": "[parameters('workspaces_adb_nh_project_name')]",
+            "location": "eastus",
+            "sku": {
+                "name": "premium"
+            },
+            "properties": {
+                "defaultCatalog": {
+                    "initialType": "UnityCatalog"
+                },
+                "managedResourceGroupId": "/subscriptions/3c97065e-007a-420a-9699-a1d4b91d017a/resourceGroups/manage-adb-ngproject",
+                "parameters": {
+                    "enableNoPublicIp": {
+                        "value": false
+                    },
+                    "natGatewayName": {
+                        "value": "nat-gateway"
+                    },
+                    "prepareEncryption": {
+                        "value": false
+                    },
+                    "publicIpName": {
+                        "value": "nat-gw-public-ip"
+                    },
+                    "requireInfrastructureEncryption": {
+                        "value": false
+                    },
+                    "storageAccountName": {
+                        "value": "dbstoragepsgkqcdts26ec"
+                    },
+                    "storageAccountSkuName": {
+                        "value": "Standard_GRS"
+                    },
+                    "vnetAddressPrefix": {
+                        "value": "10.139"
+                    }
+                },
+                "authorizations": [
+                    {
+                        "principalId": "9a74af6f-d153-4348-988a-e2672920bee9",
+                        "roleDefinitionId": "8e3af657-a8ff-443c-a75c-2fe8c4bcb635"
+                    }
+                ],
+                "createdBy": {},
+                "updatedBy": {}
+            }
+        }
+    ]
+}
